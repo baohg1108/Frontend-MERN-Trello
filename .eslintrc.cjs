@@ -20,5 +20,7 @@ module.exports = {
         pattern: ["@mui/*/*/*"],
       },
     ],
+
+    "react-refresh/only-export-components": "warn",
   },
 };
