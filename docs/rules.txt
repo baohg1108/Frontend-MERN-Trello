@@ -1,1 +1,3 @@
-import component MUI
+1, import component MUI
+2, cssBaseline: giải quyết những css để đông bộ giữa các trình duyệt
+main.jsx: import CssBaseline va <CssBaseLine/> vào trước <App/>
