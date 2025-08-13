@@ -28,6 +28,8 @@ function AppBar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        gap: 2,
+        overflowX: "auto",
       }}
     >
       {/* AppBar left */}
@@ -51,27 +53,36 @@ function AppBar() {
             Trello
           </Tynography>
         </Box>
-        <Workspace></Workspace>
-        <Recent></Recent>
-        <Starred></Starred>
-        <Templates></Templates>
-        <Button variant="outlined">Create</Button>
+
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
+          <Workspace></Workspace>
+          <Recent></Recent>
+          <Starred></Starred>
+          <Templates></Templates>
+          <Button variant="outlined">Create</Button>
+        </Box>
       </Box>
 
       {/* AppBar right */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <TextField id="outlined-search" label="Search field" type="search" />
+        <TextField
+          id="outlined-search"
+          label="Search field"
+          type="search"
+          size="small"
+          sx={{ mindWidth: "120px" }}
+        />
 
         <ModeSelect />
 
-        <Tooltip>
+        <Tooltip title="Notifications">
           <Badge color="secondary" variant="dot" sx={{ cursor: "pointer" }}>
-            <NotificationsNoneIcon />
+            <NotificationsNoneIcon sx={{ color: "primary.main" }} />
           </Badge>
         </Tooltip>
 
         <Tooltip title="Help" sx={{ cursor: "pointer" }}>
-          <HelpOutlineIcon />
+          <HelpOutlineIcon sx={{ color: "primary.main" }} />
         </Tooltip>
 
         <Profile></Profile>
