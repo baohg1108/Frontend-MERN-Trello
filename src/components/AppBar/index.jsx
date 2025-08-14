@@ -17,7 +17,8 @@ import Tooltip from "@mui/material/Tooltip";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { Help } from "@mui/icons-material";
 import Profile from "./Menus/Profile";
-//
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+
 function AppBar() {
   return (
     <Box
@@ -59,7 +60,12 @@ function AppBar() {
           <Recent></Recent>
           <Starred></Starred>
           <Templates></Templates>
-          <Button variant="outlined">Create</Button>
+          <Button
+            variant="outlined"
+            startIcon={<LibraryAddIcon></LibraryAddIcon>}
+          >
+            Create
+          </Button>
         </Box>
       </Box>
 
