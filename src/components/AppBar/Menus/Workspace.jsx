@@ -26,7 +26,8 @@ function Workspace() {
   return (
     <Box>
       <Button
-        id="basic-button"
+        sx={{ color: "white" }}
+        id="basic-button-workplace"
         aria-controls={open ? "basic-menu-workspace" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
