@@ -5,12 +5,12 @@ import VpnLockIcon from "@mui/icons-material/VpnLock";
 import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 import BoltIcon from "@mui/icons-material/Bolt";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import { Filter } from "@mui/icons-material";
 import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import { Tooltip } from "@mui/material";
 import Button from "@mui/material/Button";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { capitalizeFirstLetter } from "~/utils/formatter";
 
 const MENU_STYLE = {
   color: "white",
@@ -26,7 +26,9 @@ const MENU_STYLE = {
   },
 };
 
-function BoardBar() {
+function BoardBar({ board }) {
+  // const { board } = props;
+  // const board = props.board;
   return (
     <Box
       sx={{
@@ -46,13 +48,13 @@ function BoardBar() {
         <Chip
           sx={MENU_STYLE}
           icon={<DashboardIcon></DashboardIcon>}
-          label="Hoang Gia Bao"
+          label={board?.title}
           clickable
         ></Chip>
         <Chip
           sx={MENU_STYLE}
           icon={<VpnLockIcon></VpnLockIcon>}
-          label="Workplace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
         ></Chip>
         <Chip
