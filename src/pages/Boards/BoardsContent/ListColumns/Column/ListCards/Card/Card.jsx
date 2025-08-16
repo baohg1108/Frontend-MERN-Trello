@@ -8,6 +8,7 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Card as MuiCard } from "@mui/material";
+// image
 
 function Card({ temporaryHideMedia }) {
   if (temporaryHideMedia) {
@@ -35,7 +36,8 @@ function Card({ temporaryHideMedia }) {
     >
       <CardMedia
         sx={{ height: 140 }}
-        image="../../../assets/appbar_avt.png"
+        // image="../../../assets/appbar_avt.png"
+        image="https://tse2.mm.bing.net/th/id/OIP.pStGLEHVH0dyZWSe0HghVgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
         title="green iguana"
       />
       <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
