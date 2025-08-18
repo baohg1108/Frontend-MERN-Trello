@@ -17,10 +17,30 @@ import { ContentCopy } from "@mui/icons-material";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import ListCards from "./ListCards/ListCards";
-import theme from "~/theme";
 import { mapOrder } from "~/utils/sort";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
+// drag and drop
 function Column({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id, data: { ...column } });
+  const dndKitColumnStyles = {
+    // touchAction: "none", // dành cho sensor pointer
+
+    // transform: CSS.Transform.toString(transform),
+    /*
+    Xài transform sẽ bị lỗi: column bất kì kéo về column 1 => font quá to,
+    cột dài quá maxWidth kéo qua cột ngắn sẽ bị thu ngắn đúng bằng maxWidth
+    */
+    transform: CSS.Translate.toString(transform),
+    /*
+    Fix thành công nhưng kéo cột nào sẽ tự dưng về vị trí đó
+    */
+    transition,
+  };
+
+  //
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -29,10 +49,16 @@ function Column({ column }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  //
   const orderedColumns = mapOrder(column?.cards, column?.cardOrderIds, "_id");
 
   return (
     <Box
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
       sx={{
         minWidth: "300px",
         maxWidth: "300px",
