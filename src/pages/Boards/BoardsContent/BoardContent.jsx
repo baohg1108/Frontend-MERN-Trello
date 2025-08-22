@@ -15,9 +15,10 @@ import {
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { useEffect, useState, useCallback, useRef } from "react";
-import { cloneDeep, intersection, last } from "lodash";
+import { cloneDeep, intersection, last, isEmpty } from "lodash";
 import Column from "./ListColumns/Column/Column";
 import Card from "./ListColumns/Column/ListCards/Card/Card";
+import { generatePlaceHolderCard } from "~/utils/formatter";
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_ITEM_TYPE_COLUMN",
@@ -108,6 +109,11 @@ function BoardContent({ board }) {
         nextActiveColumn.cards = nextActiveColumn.cards.filter(
           (card) => card._id !== activeDraggingCardId
         );
+
+        if (isEmpty(nextActiveColumn.cards)) {
+          nextActiveColumn.cards = [generatePlaceHolderCard(nextActiveColumn)];
+        }
+
         // cập nhật lại card đó
         nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(
           (card) => card._id
@@ -132,6 +138,11 @@ function BoardContent({ board }) {
           ...activeDraggingCardData,
           columnId: nextOverColumn._id,
         });
+
+        // xóa placeholderCard nếu nó đang tồn tại
+        nextOverColumn.cards = nextOverColumn.cards.filter(
+          (card) => !card.FE_PlaceHolderCard
+        );
 
         // cập nhật mảng đó trong chuẩn dữ liệu
         nextOverColumn.cardOrderIds = nextOverColumn.cards.map(
